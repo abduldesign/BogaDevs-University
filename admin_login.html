@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            background-image: url('background\ login\ 2.jpg');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .page-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <h1>Welcome, Admin</h1>
+        <div class="form-container">
+            <form id="adminLoginForm">
+                <input type="text" id="adminName" name="name" placeholder="Enter your name" required>
+                <input type="text" id="adminId" name="id" placeholder="Enter your ID" required>
+                <button type="submit">Login</button>
+            </form>
+            <p class="error-message" id="errorMessage">Admin does not exist.</p>
+        </div>
+    </div>
+
+    <script>
+        // Default admin details
+        const admins = [
+            { name: "Gerad Joseph", id: "BogaDevs13" },
+            { name: "Ommar Kalam", id: "BogaDevs14" }
+        ];
+
+        // Handle form submission
+        document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const adminName = document.getElementById("adminName").value.trim();
+            const adminId = document.getElementById("adminId").value.trim();
+
+            // Check if admin exists
+            const admin = admins.find(a => a.name === adminName && a.id === adminId);
+
+            if (admin) {
+                // Redirect to the admin page
+                window.location.href = "admin.html";
+            } else {
+                // Show error message
+                document.getElementById("errorMessage").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
